@@ -4,21 +4,9 @@
 
   /* istanbul ignore next */
   //http://stackoverflow.com/questions/9267899/arraybuffer-to-base64-encoded-string
-  window._arrayBufferToBase64 = function(buffer) {
-    var binary = '';
-    var bytes = new Uint8Array(buffer);
-    var len = bytes.byteLength;
+  var mod = window.angular.module('naif.csv', []);
 
-    for (var i = 0; i < len; i += 1) {
-      binary += String.fromCharCode(bytes[i]);
-    }
-    return window.btoa(binary);
-  };
-
-
-  var mod = window.angular.module('naif.base64', []);
-
-  mod.directive('baseSixtyFourInput', [
+  mod.directive('csvInput', [
     '$window',
     '$q',
     function($window, $q) {
@@ -170,9 +158,9 @@
               // size to prevent the browser from freezing
               var exceedsMaxSize = attrs.maxsize && file.size > attrs.maxsize * 1024;
               if (attrs.doNotParseIfOversize !== undefined && exceedsMaxSize) {
-                fileObject.base64 = null;
+                fileObject.csv = null;
               } else {
-                fileObject.base64 = $window._arrayBufferToBase64(buffer);
+                fileObject.csv = buffer;
               }
 
               if (attrs.parser) {
@@ -267,7 +255,7 @@
           }
 
           ngModel.$isEmpty = function(val) {
-            return !val || (angular.isArray(val) ? val.length === 0 : !val.base64);
+            return !val || (angular.isArray(val) ? val.length === 0 : !val.csv);
           };
 
           // http://stackoverflow.com/questions/1703228/how-can-i-clear-an-html-file-input-with-javascript
