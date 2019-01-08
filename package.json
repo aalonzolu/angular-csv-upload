@@ -1,7 +1,7 @@
 {
-  "name": "angular-base64-upload",
+  "name": "angular-csv-upload",
   "version": "v0.1.23",
-  "description": "Converts files from file input into base64 encoded models.",
+  "description": "Converts csv files from file input into json models.",
   "main": "index.js",
   "scripts": {
     "test": "gulp test"
@@ -26,7 +26,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/adonespitogo/angular-base64-upload.git"
+    "url": "https://github.com/aalonzolu/angular-csv-upload.git"
   },
   "keywords": [
     "angularjs",
